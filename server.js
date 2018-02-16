@@ -17,8 +17,8 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 // Routes
-require("./routes/html-routes.js")(app);
-require("./routes/api-routes.js")(app);
+// require("./routes/html-routes.js")(app);
+// require("./routes/api-routes.js")(app);
 
 // listen for server
 db.sequelize.sync({ force: true }).then(function() { //  <<------ REMOVE FORCE WHEN DB IS SETUP
