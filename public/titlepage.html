@@ -10,7 +10,7 @@
 </head>
 <body>
     <div class="container">
-        <img src="../public/assets/img/titlevert.png">
+        <img src="./assets/img/titlevert.png">
         </div>
           
         <div class="row">
@@ -44,4 +44,16 @@
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
 <script src="../public/assets/js/login.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script>
+
+  $("#add-user").on("click", function(event){
+    event.preventDefault();
+    var username = $("#name-input").val().trim();
+    console.log(username);
+
+    $.post("/api/character/" + username).done(function(data){
+      console.log(data);
+    });
+  })
+</script>
 </html>
