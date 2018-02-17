@@ -3,20 +3,16 @@ var express = require("express");
 var router = express.Router();
 var models = require("../models");
 
-
 //get your character
-router.get("/api/character/:id", function(req, res) {
-    models.players.findAll({
-      where: {
-        id: req.params.id
-      }
-  }).then(function(player) { //this is probably wrong, pulled if from burgers homework
+router.get("/api/character", function(req, res) {
+  console.log("get api route was hit");
+    models.players.findAll({}).then(function(player) { //this is probably wrong, pulled if from burgers homework
     //handlebars stuff: 
     // var handleBarsObj = {
       //     characters: allCharacters
       // };
       // res.render("index", handleBarsObj);
-
+      res.json(player);
       console.log(player);
   });
 });
