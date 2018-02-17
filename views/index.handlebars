@@ -1,0 +1,61 @@
+<h1>Terminal-Delusion</h1>
+
+
+<main>
+
+<div class=bg>
+  
+  <div class="container">
+    
+    <div class="row">
+      
+      <div class="col s6" id="bad-guys-view">
+        <h2> Current Encounter. </h2>
+         {{#each badGuys}}
+          
+            <div class="terminalBadGuys">
+              <form action="/badGuys/{{this.id}}?_method=PUT" method="POST">
+                <button type="submit" class="badGuyAvailable"> {{this.badGuy_name}}</button>
+              </form>
+            </div>
+          
+          <!-- Add dropdown for skills -->
+
+         {{/each}}
+      </div>
+
+      <div class="col s6" id="good-guys-view">
+        <h2> Hero! </h2>
+         {{#each goodGuys}}
+          
+            <div class="terminalGoodGuys">
+              <form action="/goodGuys/{{this.id}}?_method=PUT" method="POST">
+                <button type="submit" class="goodGuyAvailable"> {{this.goodGuy_name}}</button>
+              </form>
+            </div>
+
+          <!-- Add dropdown for skills -->
+        
+         {{/each}}
+      </div>
+
+    </div>
+
+  </div>
+
+</main>
+
+<h1>Next Encounter.</h1>
+
+  <div class="row">
+      
+      <div class="col s12">
+        <form action="/badGuys" method="POST">
+          <input type="text" id="name" name="badGuy_name" placeholder="Next Encounter">
+          <button type="submit" class="initiateEnconter">Start Encounter.</button>
+        </form>
+      </div>
+
+  </div>
+
+</div>
