@@ -3,6 +3,9 @@ var express = require("express");
 var router = express.Router();
 var models = require("../models");
 
+router.get("/", function(req,res){
+  res.sendfile("index.html")
+});
 //get your character
 router.get("/api/character/:id", function(req, res) {
   console.log("get api route was hit");
