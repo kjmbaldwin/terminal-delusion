@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+		<link rel="stylesheet" href="../../public/assets/css/style.css" type="text/css" />
+		<title>Terminal Delusion</title>
+</head>
+
+<body>
+
+		<img src="../../public/assets/img/burger_beauty.png" width="400px" id="burger_beauty">
+		<h1> Terminal DelusionBurger </h1>
+		<!-- <img src="../../public/assets/img/wizard-injured.png" width="200px" id="wizard_injured"> -->
+		
+		<!-- {{{ body }}} -->
+
+<main>
+
+<div class=bg>
+  
+  <div class="container">
+
+  	<div class="row">
+
+		<div class="col s2">
+    	</div>
+  		<div class="col s8" id="battle-outcome-data">
+        <h2 id=data-display> Battle Results go here.</h2>
+    	</div>
+    	<div class="col s2">
+    	</div>
+
+    </div>
+
+  	<div class="row">
+
+  		<div class="col s4" id="good-guys-view-header">
+        <h2> Wizard Hero! </h2>
+    	</div>
+
+		<div class="col s4" id="spacer-view-header">
+    	</div>
+
+    	<div class="col s4" id="bad-guys-view-header">
+        <h2> Current Encounter. </h2>
+    	</div>
+
+    </div>
+    
+    <div class="row">
+      
+	  <div class="col s4" id="good-guys-view">
+        <!-- <h2> Hero! </h2> -->
+         <!-- {{#each goodGuys}} -->
+          	<img src="../../public/assets/img/wizard-injured.png" width="200px" id="wizard_injured">
+            <div class="terminalGoodGuys">
+              <!-- <form action="/goodGuys/{{this.id}}?_method=PUT" method="POST">
+                <button type="submit" class="goodGuyAvailable"> {{this.goodGuy_name}}</button>
+              </form> -->
+
+             <!--  <form action="">
+			  <input type="radio" name="action" value="attack"> Fireball<br>
+			  <input type="radio" name="action" value="defend"> Shield<br>
+			  <input type="radio" name="action" value="flee"> Flee
+			  </form> -->
+            </div>
+
+          <!-- Add dropdown for skills -->
+        
+         <!-- {{/each}} -->
+      </div>
+
+      <div class="col s4" id="spacer-view">
+      </div>
+
+      <div class="col s4" id="bad-guys-view">
+        <!-- <h2> Current Encounter. </h2> -->
+         <!-- {{#each badGuys}} -->
+            <img src="../../public/assets/img/monster-healthy2.png" width="200px" id="monster_healthy2">
+            <div class="terminalBadGuys">
+              <!-- <form action="/badGuys/{{this.id}}?_method=PUT" method="POST">
+                <button type="submit" class="badGuyAvailable"> {{this.badGuy_name}}</button>
+              </form> -->
+            </div>
+          
+          <!-- Add dropdown for skills -->
+
+         <!-- {{/each}} -->
+      </div>
+
+    </div>
+
+	<div class="row">
+      <div class="col s8" id="action-view">
+      	<button type="button" class="btn btn-primary btn-sm">Fireball</button>
+      	<button type="button" class="btn btn-primary btn-sm">Shield</button>
+      	<button type="button" class="btn btn-primary btn-sm">Flee</button>
+      </div>
+    </div>
+
+  </div>
+
+</main>
+
+<h1>Next Encounter.</h1>
+
+  <div class="row">
+      
+      <div class="col s12">
+        <form action="/badGuys" method="POST">
+          <input type="text" id="name" name="badGuy_name" placeholder="Next Encounter">
+          <button type="submit" class="initiateEnconter">Start Encounter.</button>
+        </form>
+      </div>
+
+  </div>
+
+</div>
+
+		<footer class="Terminal-Delusion-Footer">
+			<div class="footer-copyright">
+				<div class="container">
+					<span class="copyright">@2018 TDCode</span>
+					<a href="https://github.com/kjmbaldwin/terminal-delusion">Terminal Delusion</a>
+				</div>
+			</div>
+		</footer>
+	</body>
+</html>
