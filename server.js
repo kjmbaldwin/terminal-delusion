@@ -17,6 +17,8 @@ app.use(bodyParser.json());
 app.use(express.static("public"));
 
 // Routes
+var router = require('./controllers/character-controller.js');
+app.use('/', router);
 // require("./routes/html-routes.js")(app);
 // require("./routes/api-routes.js")(app);
 
