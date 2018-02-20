@@ -9,8 +9,7 @@ router.get("/", function(req,res){
 });
 //get your character
 router.post("/api/character/:username", function(req, res) {
-  console.log("get api route was hit");
-    models.players.findOne({
+  models.players.findOne({
       where: {
         username: req.params.username
       }
@@ -20,9 +19,7 @@ router.post("/api/character/:username", function(req, res) {
       //     characters: allCharacters
       // };
       // res.render("index", handleBarsObj);
-      var player = res.json(player);
-      module.exports = player;
-      res.json(player);
+     res.json(player);
       console.log(player);
   });
 });
