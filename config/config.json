@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Chazdog701",
+    "password": null,
     "database": "terminal_delusion",
     "host": "127.0.0.1",
     "dialect": "mysql"

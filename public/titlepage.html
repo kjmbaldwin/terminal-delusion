@@ -42,7 +42,7 @@
 </body>
 
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="../public/assets/js/login.js"></script>
+<!-- <script src="../public/assets/js/login.js"></script> -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script>
 
@@ -53,7 +53,24 @@
 
     $.post("/api/character/" + username).done(function(data){
       console.log(data);
+      var fromPlayerTable = {
+        id: data.id,
+        username: data.username,
+        name: data.name,
+        level: data.level,
+        max_hp: data.max_hp,
+        base_attack: data.base_attack,
+        known_skills: data.known_skills
+      };
+      console.log(fromPlayerTable);
+      localStorage.player = JSON.stringify(fromPlayerTable);
+      var player = JSON.parse(localStorage.player);
+      // var player = JSON.parse(player);
+      console.log("after Parse: ", player);
+      $.get("/start/game").done(function(data){
+        console.log(data);
+      });
     });
-  })
+  });
 </script>
 </html>

@@ -14,19 +14,22 @@ router.post("/api/character/:username", function(req, res) {
       where: {
         username: req.params.username
       }
-    }).then(function(player) { //this is probably wrong, pulled if from burgers homework
+    }).then(function(data) { //this is probably wrong, pulled if from burgers homework
     //handlebars stuff: 
     // var handleBarsObj = {
       //     characters: allCharacters
       // };
       // res.render("index", handleBarsObj);
-      var player = res.json(player);
-      module.exports = player;
-      res.json(player);
-      console.log(player);
+      res.json(data);
+      console.log(data);
   });
 });
-
+router.get("/start/game", function(req, res){
+  console.log("start game route triggered");
+  var world = "hello world";
+  //a copy of the user data is being sent here, and you could use if neccessary, or just use localstorage.
+  res.render("index");
+});
 //get the enemy 
 
 router.get("/api/enemy/:id", function(req, res){
