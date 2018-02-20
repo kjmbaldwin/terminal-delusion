@@ -2,13 +2,17 @@
 var express = require("express");
 var router = express.Router();
 var models = require("../models");
+var path = require("path");
 
+router.get("/", function(req,res){
+  res.sendfile(path.join(__dirname, "../public/titlepage.html"));
+});
 //get your character
-router.get("/api/character/:id", function(req, res) {
+router.post("/api/character/:username", function(req, res) {
   console.log("get api route was hit");
-    models.players.findAll({
+    models.players.findOne({
       where: {
-        id: req.params.id
+        username: req.params.username
       }
     }).then(function(player) { //this is probably wrong, pulled if from burgers homework
     //handlebars stuff: 
