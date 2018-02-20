@@ -4,10 +4,14 @@ var router = express.Router();
 var models = require("../models");
 var path = require("path");
 
+
+//initial homepage, this is a html page we are sending
 router.get("/", function(req,res){
   res.sendfile(path.join(__dirname, "../public/titlepage.html"));
 });
-//get your character
+
+
+//get your character based on the username
 router.post("/api/character/:username", function(req, res) {
   console.log("get api route was hit");
     models.players.findOne({
@@ -20,22 +24,21 @@ router.post("/api/character/:username", function(req, res) {
       //     characters: allCharacters
       // };
       // res.render("index", handleBarsObj);
-      var player = res.json(player);
-      module.exports = player;
       res.json(player);
       console.log(player);
   });
 });
 
-//get the enemy 
 
-router.get("/api/enemy/:id", function(req, res){
+//get the enemy based on name
+router.post("/api/enemy/:name", function(req, res){
   db.Enemy.findAll({
     where: {
-      id: req.params.id
+      id: req.params.name
     }
   }).then(function(enemies){
-    console.log(enemies);
+    res.json(enemies);
+      console.log(enemies);
   });
 });
 
