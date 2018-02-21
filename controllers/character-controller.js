@@ -7,6 +7,13 @@ var path = require("path");
 router.get("/", function(req,res){
   res.sendfile(path.join(__dirname, "../public/titlepage.html"));
 });
+
+router.get("/battle", function(req,res){
+  var hbsObject = {character_name: "Paul",
+                    hp: 300};
+  res.render("index", hbsObject);
+});
+
 //get your character
 router.post("/api/character/:username", function(req, res) {
   console.log("get api route was hit");
