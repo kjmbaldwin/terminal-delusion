@@ -11,6 +11,13 @@ router.get("/", function(req,res){
 });
 
 
+router.get("/battle", function(req,res){
+  var hbsObject = {character_name: "Paul",
+                    hp: 300};
+  res.render("index", hbsObject);
+});
+
+
 //get your character based on the username
 router.get("/api/character/:username", function(req, res) {
   

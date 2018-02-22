@@ -1,49 +1,89 @@
-<h1>Terminal-Delusion</h1>
+<h1><img src="/assets/img/titlehoriz.png"></h1>
 
 
 <main>
 
 <div class=bg>
-  
+
   <div class="container">
+    <div class="row">
+    <div class="col s2">
+      </div>
+
+      <div class="col s8" id="battle-outcome-data">
+        <h2 id="console" class="data-display"> Battle Results go here.</h2>
+      </div>
+
+      <div class="col s2">
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col s4" id="good-guys-view-header">
+        <h2> Wizard Hero! </h2>
+      </div>
+
+    <div class="col s4" id="spacer-view-header">
+      </div>
+
+      <div class="col s4" id="bad-guys-view-header">
+        <h2> Current Encounter. </h2>
+      </div>
+    </div>
     
     <div class="row">
-      
-      <div class="col s6" id="bad-guys-view">
-        <h2> Current Encounter. </h2>
-         {{#each badGuys}}
-          
-            <div class="terminalBadGuys">
-              <form action="/badGuys/{{this.id}}?_method=PUT" method="POST">
-                <button type="submit" class="badGuyAvailable"> {{this.badGuy_name}}</button>
-              </form>
-            </div>
-          
-          <!-- Add dropdown for skills -->
-
-         {{/each}}
-      </div>
-
-      <div class="col s6" id="good-guys-view">
-        <h2> Hero! </h2>
-         {{#each goodGuys}}
-          
-            <div class="terminalGoodGuys">
-              <form action="/goodGuys/{{this.id}}?_method=PUT" method="POST">
-                <button type="submit" class="goodGuyAvailable"> {{this.goodGuy_name}}</button>
-              </form>
-            </div>
-
-          <!-- Add dropdown for skills -->
+    <div class="col s4" id="good-guys-view">
         
-         {{/each}}
+        <div class="progress">
+        <div class="progress-bar progress-bar-success" id="playerBar" role="progressbar" aria-valuenow="100"
+        aria-valuemin="0" aria-valuemax="100" style="width:100%">
+          <span class="sr-only">70% Complete</span>
+        </div>
       </div>
 
+            <img src="/assets/img/wizard-healthy2.png" width="200px" id="wizard">
+            <div class="terminalGoodGuys">
+              <!-- <form action="/goodGuys/{{this.id}}?_method=PUT" method="POST">
+                <button type="submit" class="goodGuyAvailable"> {{this.goodGuy_name}}</button>
+              </form> -->
+            </div>
+         
+      </div>
+
+      <div class="col s4" id="spacer-view">
+      </div>
+
+      <div class="col s4" id="bad-guys-view">
+         
+          <div class="progress">
+        <div class="progress-bar progress-bar-success enemyBar" id="enemyBar" role="progressbar" aria-valuenow="100"
+        aria-valuemin="0" aria-valuemax="100" style="width:100%">
+          <span class="sr-only">70% Complete</span>
+        </div>
+      </div>
+
+            <img src="../assets/img/monster-healthy2.png" width="200px" id="monster">
+            <div class="terminalBadGuys">
+              <!-- <form action="/badGuys/{{this.id}}?_method=PUT" method="POST">
+                <button type="submit" class="badGuyAvailable"> {{this.badGuy_name}}</button>
+              </form> -->
+            </div>
+         
+      </div>
+    </div>
+
+  <div class="row">
+      <div class="col s12" id="action-view">
+        <button type="button" class="btn btn-primary btn-sm skill-button">Fireball</button>
+        <button type="button" class="btn btn-primary btn-sm skill-button">Bigger Fireball</button>
+        <button type="button" class="btn btn-primary btn-sm skill-button">RunAAAAAAWWWWAAAAYYYYYY</button>
+        <button type="button" class="btn btn-primary btn-sm dmg-button">Damage</button>
+      </div>
     </div>
 
   </div>
 
-</main>
+</div>
 
 <h1>Next Encounter.</h1>
 
@@ -58,4 +98,6 @@
 
   </div>
 
-</div>
+  <script src="/assets/js/battle.js"></script>
+
+  </main>
