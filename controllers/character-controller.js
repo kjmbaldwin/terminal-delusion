@@ -12,14 +12,16 @@ router.get("/", function(req,res){
 
 
 router.get("/battle", function(req,res){
-  var hbsObject = {character_name: "Paul",
-                    hp: 300};
+  var hbsObject = {
+      character_name: "Paul",
+      hp: 300
+    };
   res.render("index", hbsObject);
 });
 
 
 //get your character based on the username
-router.get("/api/character/:username", function(req, res) {
+router.post("/api/character/:username", function(req, res) {
   
     models.Player.findOne({
       where: {
@@ -39,7 +41,7 @@ router.get("/api/character/:username", function(req, res) {
 
 
 //get the enemy based on name
-router.get("/api/enemy/:name", function(req, res){
+router.post("/api/enemy/:name", function(req, res){
   db.Enemy.findAll({
     where: {
       name: req.params.name
