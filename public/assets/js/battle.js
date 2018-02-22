@@ -18,7 +18,7 @@ var test = {
 		base_attack: 3,
 		known_skills: "0",
 		// Added current_attack key
-		current_attack: 1,
+		current_attack: 3,
 	},
 	player_skill: {
 		name: 'player_attack',
@@ -46,57 +46,67 @@ var attack = function(attackerObj, skillObj){
 };
 
 $(".skill-button").on('click', function(e) {
-		animate("/assets/img/wizard-attack2.png");
-		var playerDmg = attack(test.player, test.player_skill);
-		console.log(playerDmg);
-		test.enemy.current_hp = test.enemy.current_hp - playerDmg;
-		console.log(test.enemy.current_hp);
-		var enemyDmg = attack(test.enemy, test.enemy_skill);
-		test.player.current_hp = test.player.current_hp - enemyDmg;
-		console.log(test.player.current_hp);
-		if (test.player.current_hp > 10) {
+		playerAttack(test.player, test.enemy);
+});
+function playerAttack(playerObj, enemyObj){
+			animate("/assets/img/wizard-attack2.png");
+		var playerDmg = attack(playerObj, test.player_skill);
+		// console.log("i am player damage "+playerDmg);
+		test.enemy.current_hp = enemyObj.current_hp - playerDmg;
+		// console.log("I am the enemie's health after attack "+enemyObj.current_hp);
+		var enemyDmg = attack(enemyObj, test.enemy_skill);
+		playerObj.current_hp = playerObj.current_hp - enemyDmg;
+		// console.log("I am current player hp "+playerObj.current_hp);
+		if (playerObj.current_hp > 10) {
 			returnAnimate("/assets/img/wizard-healthy2.png");
-			if (test.enemy.current_hp < 10 && test.enemy.current_hp > 0) {
+			if (enemyObj.current_hp < 10 && enemyObj.current_hp > 0) {
 				monsterAnimate("/assets/img/monster-injured2.png");
 			}
-			else if (test.enemy.current_hp <= 0) {
+			else if (enemyObj.current_hp <= 0) {
 				monsterAnimate("/assets/img/monster-injured2.png");
 			}
 		}
-		else if (test.player.current_hp > 0 && test.player.current_hp < 10) {
+		else if (playerObj.current_hp > 0 && playerObj.current_hp < 10) {
 			returnAnimate("/assets/img/wizard-injured2.png"); 
 		}
 		else {
 			returnAnimate("/assets/img/wizard-injured2.png");
 		}
-});
-
+		enemyBarCheck(test.enemy);
+		playerBarCheck(test.player);
+}
 function animate(z) {
 	setTimeout(function() {
     $("#wizard").attr("src", z);
     	}, 200);
 }
-
 function returnAnimate(z) {
 	setTimeout(function() {
     $("#wizard").attr("src", z);
     	}, 1000);
 }
-
-$(".dmg-button").on('click', function(e) {
-		monsterAnimate("/assets/img/monster-injured2.png");
-});
-
 function monsterAnimate(z) {
 	setTimeout(function() {
     $("#monster").attr("src", z);
     	}, 200);
 }
+function enemyBarCheck(z) {
+	if (z.current_hp < 1){
+		$('#console').text("you win!");
+		}
+			newprogress=0;
+			newprogress = (z.current_hp/z.max_hp)*100;
+			console.log(newprogress);
+			$('#enemyBar').width(newprogress + "%").attr('aria-valuenow', newprogress);
+}
+function playerBarCheck(z) {
+	if(z.current_hp < 1){
+		$('#console').text('you lose :(');
+		wait =1;
+	}
+		newprogress =0;
+		newprogress = (z.current_hp/z.max_hp)*100;
+	console.log("i am player new progress "+newprogress);
+	$('#playerBar').width(newprogress + "%").attr('aria-valuenow', newprogress);
+}
 
-
-
-
-// $(document).on('click', '.skill-button', function() {
-// 		console.log("wtf");
-// 		animate("../../public/assets/img/wizard-attack2.png");
-// });
