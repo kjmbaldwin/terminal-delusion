@@ -23,7 +23,7 @@ app.use('/', router);
 // require("./routes/api-routes.js")(app);
 
 // listen for server
-db.sequelize.sync( {force: true} ).then(function() { //  <<------ REMOVE FORCE WHEN DB IS SETUP { force: true }
+db.sequelize.sync().then(function() { //  <<------ REMOVE FORCE WHEN DB IS SETUP { force: true }
   app.listen(PORT, function() {
     console.log("App listening on PORT " + PORT);
   });

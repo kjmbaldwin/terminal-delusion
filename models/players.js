@@ -27,5 +27,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
+  Player.associate = function(models) {
+    Player.hasMany(models.player_skills, {});
+  };
+
 return Player;
 };

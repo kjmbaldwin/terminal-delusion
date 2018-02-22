@@ -22,5 +22,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
+  Enemy.associate = function(models) {
+    Enemy.hasMany(models.enemy_skills, {});
+  };
+
 return Enemy;
 };

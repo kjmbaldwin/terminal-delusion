@@ -12,5 +12,12 @@ module.exports = (sequelize, DataTypes) => {
       }
     }
   });
+
+  enemy_skills.associate = function(models) {
+    enemy_skills.belongsTo(models.Enemy, {
+      foreignKey: "known_skills"
+    });
+  };
+
   return enemy_skills;
 };

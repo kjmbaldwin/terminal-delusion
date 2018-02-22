@@ -12,30 +12,32 @@ router.get("/", function(req,res){
 
 
 //get your character based on the username
-router.post("/api/character/:username", function(req, res) {
-  console.log("get api route was hit");
-    models.players.findOne({
+router.get("/api/character/:username", function(req, res) {
+  
+    models.Player.findOne({
       where: {
         username: req.params.username
-      }
-    }).then(function(player) { //this is probably wrong, pulled if from burgers homework
+      },
+      include: [models.player_skills]
+    }).then(function(result) { //this is probably wrong, pulled if from burgers homework
     //handlebars stuff: 
     // var handleBarsObj = {
       //     characters: allCharacters
       // };
       // res.render("index", handleBarsObj);
-      res.json(player);
-      console.log(player);
+      res.json(result);
+      console.log(result);
   });
 });
 
 
 //get the enemy based on name
-router.post("/api/enemy/:name", function(req, res){
+router.get("/api/enemy/:name", function(req, res){
   db.Enemy.findAll({
     where: {
-      id: req.params.name
-    }
+      name: req.params.name
+    },
+    include: [models.enemy_skills]
   }).then(function(enemies){
     res.json(enemies);
       console.log(enemies);
@@ -45,7 +47,7 @@ router.post("/api/enemy/:name", function(req, res){
 
 //this is for testing and needs to be removed
 router.post("/api/new", function(req, res){
-  models.players.create({
+  models.Player.create({
     username: req.body.username,
     name: req.body.name,
     level: req.body.level,
