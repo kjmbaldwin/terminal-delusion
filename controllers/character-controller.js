@@ -22,24 +22,35 @@ router.get("/battle", function(req,res){
 
 //get your character based on the username
 router.post("/api/character/:username", function(req, res) {
-  
+    var username = req.params.username;
     models.Player.findOne({
       where: {
         username: req.params.username
       },
       include: [models.player_skills]
     }).then(function(result) { //this is probably wrong, pulled if from burgers homework
-    //handlebars stuff: 
-    // var handleBarsObj = {
-      //     characters: allCharacters
-      // };
-      // res.render("index", handleBarsObj);
-      res.json(result);
-      console.log(result);
-  });
+        if(result === null){
+           models.Player.create({
+            username: username,
+            name: "John",
+            level: 0,
+            max_hp: 25,
+            base_attack: 5,
+            known_skills: "0",
+            }).then(function(dbAdd){
+                res.json(dbAdd);
+                console.log(dbAdd);
+              });
+        }
+        else {
+          return res.redirect('/')
+          // res.json(result);
+           console.log(result);
+        }
+      // res.render("index", result);
+      // res.json(result);
+  });  
 });
-
-
 //get the enemy based on name
 router.post("/api/enemy/:name", function(req, res){
   db.Enemy.findAll({
@@ -52,8 +63,6 @@ router.post("/api/enemy/:name", function(req, res){
       console.log(enemies);
   });
 });
-
-
 //this is for testing and needs to be removed
 router.post("/api/new", function(req, res){
   models.Player.create({

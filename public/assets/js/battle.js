@@ -55,12 +55,13 @@ function playerAttack(playerObj, enemyObj){
 		test.enemy.current_hp = enemyObj.current_hp - playerDmg;
 		// console.log("I am the enemie's health after attack "+enemyObj.current_hp);
 		var enemyDmg = attack(enemyObj, test.enemy_skill);
+			monsterAnimate("/assets/img/monster-attack2.png");
 		playerObj.current_hp = playerObj.current_hp - enemyDmg;
 		// console.log("I am current player hp "+playerObj.current_hp);
 		if (playerObj.current_hp > 10) {
 			returnAnimate("/assets/img/wizard-healthy2.png");
-			if (enemyObj.current_hp < 10 && enemyObj.current_hp > 0) {
-				monsterAnimate("/assets/img/monster-injured2.png");
+			if (enemyObj.current_hp > 10 ) {
+				returnMonsterAnimate("/assets/img/monster-healthy2.png");
 			}
 			else if (enemyObj.current_hp <= 0) {
 				monsterAnimate("/assets/img/monster-injured2.png");
@@ -89,6 +90,11 @@ function monsterAnimate(z) {
 	setTimeout(function() {
     $("#monster").attr("src", z);
     	}, 200);
+}
+function returnMonsterAnimate(z) {
+	setTimeout(function() {
+    $("#monster").attr("src", z);
+    	}, 1000);
 }
 function enemyBarCheck(z) {
 	if (z.current_hp < 1){

@@ -52,8 +52,21 @@
     console.log(username);
 
     $.post("/api/character/" + username).done(function(data){
-      console.log(data);
+      console.log(data)
+      var fromPlayerTable = {
+        id: data.id,
+        username: data.username,
+        name: data.name,
+        level: data.level,
+        max_hp: data.max_hp,
+        base_attack: data.base_attack,
+        known_skills: data.known_skills
+      };
+      console.log(fromPlayerTable);
+      localStorage.player = JSON.stringify(fromPlayerTable);
+      var player = JSON.parse(localStorage.player);
+      // window.location.href = "/battle";
     });
-  })
+  });
 </script>
 </html>
