@@ -4,9 +4,12 @@ var router = express.Router();
 var models = require("../models");
 var path = require("path");
 
+
+//initial homepage, this is a html page we are sending
 router.get("/", function(req,res){
   res.sendfile(path.join(__dirname, "../public/titlepage.html"));
 });
+
 
 router.get("/battle", function(req,res){
   var hbsObject = {character_name: "Paul",
@@ -14,42 +17,44 @@ router.get("/battle", function(req,res){
   res.render("index", hbsObject);
 });
 
-//get your character
-router.post("/api/character/:username", function(req, res) {
-  console.log("get api route was hit");
-    models.players.findOne({
+
+//get your character based on the username
+router.get("/api/character/:username", function(req, res) {
+  
+    models.Player.findOne({
       where: {
         username: req.params.username
-      }
-    }).then(function(player) { //this is probably wrong, pulled if from burgers homework
+      },
+      include: [models.player_skills]
+    }).then(function(result) { //this is probably wrong, pulled if from burgers homework
     //handlebars stuff: 
     // var handleBarsObj = {
       //     characters: allCharacters
       // };
       // res.render("index", handleBarsObj);
-      var player = res.json(player);
-      module.exports = player;
-      res.json(player);
-      console.log(player);
+      res.json(result);
+      console.log(result);
   });
 });
 
-//get the enemy 
 
-router.get("/api/enemy/:id", function(req, res){
+//get the enemy based on name
+router.get("/api/enemy/:name", function(req, res){
   db.Enemy.findAll({
     where: {
-      id: req.params.id
-    }
+      name: req.params.name
+    },
+    include: [models.enemy_skills]
   }).then(function(enemies){
-    console.log(enemies);
+    res.json(enemies);
+      console.log(enemies);
   });
 });
 
 
 //this is for testing and needs to be removed
 router.post("/api/new", function(req, res){
-  models.players.create({
+  models.Player.create({
     username: req.body.username,
     name: req.body.name,
     level: req.body.level,
