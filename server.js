@@ -33,8 +33,15 @@ app.use('/', router);
 // app.set('view engine', 'html');
 
 // listen for server
-db.sequelize.sync().then(function() { //  <<------ REMOVE FORCE WHEN DB IS SETUP { force: true }
-  app.listen(PORT, function() {
-    console.log("App listening on PORT " + PORT);
+// db.sequelize.sync().then(function() { //  <<------ REMOVE FORCE WHEN DB IS SETUP { force: true }
+//   app.listen(PORT, function() {
+//     console.log("App listening on PORT " + PORT);
+//   });
+// });
+
+//heroku server:
+db.sequelize.sync().then(function() {
+  http.createServer(app).listen(PORT, function(){
+    console.log('Express server listening on port ' + PORT;
   });
 });
