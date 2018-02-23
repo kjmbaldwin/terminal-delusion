@@ -46,11 +46,12 @@ router.post("/api/character/:username", function(req, res) {
           res.json(result);
            console.log(result);
         } 
+        router.something();
   });  
 });
 //get the enemy based on name
 router.post("/api/enemy/:name", function(req, res){
-  db.Enemy.findAll({
+  models.Enemy.findOne({
     where: {
       name: req.params.name
     },
@@ -60,7 +61,6 @@ router.post("/api/enemy/:name", function(req, res){
       console.log(enemies);
   });
 });
-//this is for testing and needs to be removed
 router.post("/api/new", function(req, res){
   models.Player.create({
     username: req.body.username,
@@ -69,10 +69,13 @@ router.post("/api/new", function(req, res){
     max_hp: req.body.max_hp,
     base_attack: req.body.base_attack,
     known_skills: req.body.known_skills
-}).then(function(dbAdd){
-    res.json(dbAdd);
-    console.log(dbAdd);
+  }).then(function(dbAdd){
+      res.json(dbAdd);
+      console.log(dbAdd);
+    });
   });
-});
 
+router.something = function(){
+  console.log("something worked, i guess.");
+};
 module.exports = router;

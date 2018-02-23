@@ -15,10 +15,10 @@ module.exports = {
 
     return queryInterface.bulkInsert('enemies', [{
       name: 'Ogre',
-      level: 1,
-      max_hp: 10,
-      base_attack: 5,
-      known_skills: "attack",
+      level: 0,
+      max_hp: 25,
+      base_attack: 3,
+      known_skills: "enemy_attack",
       createdAt : new Date(),
       updatedAt : new Date()
     }], {});
