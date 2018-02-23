@@ -6,14 +6,17 @@
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
 
 		<link rel="stylesheet" href="../../public/assets/css/style.css" type="text/css" />
+
+		<script
+		  src="https://code.jquery.com/jquery-3.2.1.min.js"
+		  integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		  crossorigin="anonymous">	
+		</script>
+
 		<title>Terminal Delusion</title>
 </head>
 
 <body>
-
-		<img src="../../public/assets/img/burger_beauty.png" width="400px" id="burger_beauty">
-		<h1> Terminal DelusionBurger </h1>
-		<!-- <img src="../../public/assets/img/wizard-injured.png" width="200px" id="wizard_injured"> -->
 		
 		<!-- {{{ body }}} -->
 
@@ -24,19 +27,18 @@
   <div class="container">
 
   	<div class="row">
-
 		<div class="col s2">
     	</div>
+
   		<div class="col s8" id="battle-outcome-data">
         <h2 id=data-display> Battle Results go here.</h2>
     	</div>
+
     	<div class="col s2">
     	</div>
-
     </div>
 
   	<div class="row">
-
   		<div class="col s4" id="good-guys-view-header">
         <h2> Wizard Hero! </h2>
     	</div>
@@ -47,29 +49,24 @@
     	<div class="col s4" id="bad-guys-view-header">
         <h2> Current Encounter. </h2>
     	</div>
-
     </div>
     
     <div class="row">
-      
 	  <div class="col s4" id="good-guys-view">
-        <!-- <h2> Hero! </h2> -->
          <!-- {{#each goodGuys}} -->
-          	<img src="../../public/assets/img/wizard-injured.png" width="200px" id="wizard_injured">
+         	<div class="progress">
+			  <div class="progress-bar progress-bar-success" id="playerBar" role="progressbar" aria-valuenow="100"
+			  aria-valuemin="0" aria-valuemax="100" style="width:100%">
+			    <span class="sr-only">70% Complete</span>
+			  </div>
+			</div>
+
+          	<img src="../../public/assets/img/wizard-injured2.png" width="200px" id="wizard">
             <div class="terminalGoodGuys">
               <!-- <form action="/goodGuys/{{this.id}}?_method=PUT" method="POST">
                 <button type="submit" class="goodGuyAvailable"> {{this.goodGuy_name}}</button>
               </form> -->
-
-             <!--  <form action="">
-			  <input type="radio" name="action" value="attack"> Fireball<br>
-			  <input type="radio" name="action" value="defend"> Shield<br>
-			  <input type="radio" name="action" value="flee"> Flee
-			  </form> -->
             </div>
-
-          <!-- Add dropdown for skills -->
-        
          <!-- {{/each}} -->
       </div>
 
@@ -77,32 +74,36 @@
       </div>
 
       <div class="col s4" id="bad-guys-view">
-        <!-- <h2> Current Encounter. </h2> -->
          <!-- {{#each badGuys}} -->
-            <img src="../../public/assets/img/monster-healthy2.png" width="200px" id="monster_healthy2">
+         	<div class="progress">
+			  <div class="progress-bar progress-bar-success enemyBar" id="enemyBar" role="progressbar" aria-valuenow="100"
+			  aria-valuemin="0" aria-valuemax="100" style="width:100%">
+			    <span class="sr-only">70% Complete</span>
+			  </div>
+			</div>
+
+            <img src="../../public/assets/img/monster-healthy2.png" width="200px" id="monster">
             <div class="terminalBadGuys">
               <!-- <form action="/badGuys/{{this.id}}?_method=PUT" method="POST">
                 <button type="submit" class="badGuyAvailable"> {{this.badGuy_name}}</button>
               </form> -->
             </div>
-          
-          <!-- Add dropdown for skills -->
-
          <!-- {{/each}} -->
       </div>
-
     </div>
 
 	<div class="row">
-      <div class="col s8" id="action-view">
-      	<button type="button" class="btn btn-primary btn-sm">Fireball</button>
-      	<button type="button" class="btn btn-primary btn-sm">Shield</button>
-      	<button type="button" class="btn btn-primary btn-sm">Flee</button>
+      <div class="col s12" id="action-view">
+      	<button type="button" class="btn btn-primary btn-sm skill-button">Fireball</button>
+      	<button type="button" class="btn btn-primary btn-sm skill-button">Bigger Fireball</button>
+      	<button type="button" class="btn btn-primary btn-sm skill-button">RunAAAAAAWWWWAAAAYYYYYY</button>
+      	<button type="button" class="btn btn-primary btn-sm dmg-button">Damage</button>
       </div>
     </div>
 
   </div>
 
+</div>
 </main>
 
 <h1>Next Encounter.</h1>
@@ -118,8 +119,6 @@
 
   </div>
 
-</div>
-
 		<footer class="Terminal-Delusion-Footer">
 			<div class="footer-copyright">
 				<div class="container">
@@ -128,5 +127,9 @@
 				</div>
 			</div>
 		</footer>
-	</body>
+
+		<!-- This is initiated at the end to prevent loading default -->
+		<script src="../../public/assets/js/battle.js"></script>
+
+</body>
 </html>
