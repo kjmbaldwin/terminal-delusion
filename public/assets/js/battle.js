@@ -1,3 +1,4 @@
+console.log($("#skillButton0").text());
 var player = JSON.parse(localStorage.player);
 //grab db object from localstorage
 var enemy;
@@ -43,35 +44,36 @@ var test = {
 
 
 $(".skill-button").on('click', function(e) {
+	var skillName = this.value;
 	//start primay function on click.
-		skillClicked(player, enemy);
+	if(player.current_hp && enemy.current_hp >0) {
+	skillClicked(player, enemy);
+	}
 });
 
 //define functions now
 function skillClicked(playerObj, enemyObj){
 	//primary function after player clicks a skill button
 			animate("/assets/img/wizard-attack2.png");
-				var playerDmg = attack(playerObj, test.player_skill);
-				enemyObj.current_hp = enemyObj.current_hp - playerDmg;
+			var playerDmg = attack(playerObj, test.player_skill);
+			enemyObj.current_hp = enemyObj.current_hp - playerDmg;
 			var enemyDmg = attack(enemyObj, test.enemy_skill);
 			monsterAnimate("/assets/img/monster-attack2.png");
-		playerObj.current_hp = playerObj.current_hp - enemyDmg;
+			playerObj.current_hp = playerObj.current_hp - enemyDmg;
+			injuryCheck(playerObj, enemyObj);
 		// console.log("I am current player hp "+playerObj.current_hp);
-		if (playerObj.current_hp > 10) {
-			returnAnimate("/assets/img/wizard-healthy2.png");
-			if (enemyObj.current_hp > 10 ) {
-				returnMonsterAnimate("/assets/img/monster-healthy2.png");
-			}
-			else if (enemyObj.current_hp <= 0) {
-				monsterAnimate("/assets/img/monster-injured2.png");
-			}
-		}
-		else if (playerObj.current_hp > 0 && playerObj.current_hp < 10) {
-			returnAnimate("/assets/img/wizard-injured2.png"); 
-		}
-		else {
-			returnAnimate("/assets/img/wizard-injured2.png");
-		}
+		
+			
+		// 	else if (enemyObj.current_hp <= 0) {
+		// 		monsterAnimate("/assets/img/monster-injured2.png");
+		// 	}
+		// }
+		// else if (playerObj.current_hp > 0 && playerObj.current_hp < 10) {
+		// 	returnAnimate("/assets/img/wizard-injured2.png"); 
+		// }
+		// else {
+		// 	returnAnimate("/assets/img/wizard-injured2.png");
+		// }
 		enemyBarCheck(enemy);
 		playerBarCheck(player);
 }
@@ -84,29 +86,47 @@ var attack = function(attackerObj, skillObj){
 		
 		return(Math.round(base_damage + randomized_damage));
 };
-function makeTimeStats(z){
-	z.current_hp = z.max_hp;
-	z.current_attack = z.base_attack;
-}
+
 function animate(z) {
 	setTimeout(function() {
     $("#wizard").attr("src", z);
     	}, 200);
 }
+function injuryCheck(player, enemy){
+	if (player.current_hp > player.max/2) {
+		returnAnimate("/assets/img/wizard-healthy2.png");		
+	}
+	else if (player.current_hp < 1) {
+		returnAnimate("/assets/img/wizard-incapacitated.png")
+	} 
+	else {
+		returnAnimate("/assets/img/wizard-injured2.png")
+	}
+	if (enemy.current_hp > enemy.max_hp/2  ) {
+		returnMonsterAnimate("/assets/img/monster-healthy2.png");
+	}
+	else if (enemy.current_hp < 1) {
+		returnMonsterAnimate("/assets/img/monster-incapacitated2.png");
+	}  
+	else {
+		returnMonsterAnimate("/assets/img/monster-injured2.png");
+	}
+
+}	
 function returnAnimate(z) {
 	setTimeout(function() {
     $("#wizard").attr("src", z);
+    	}, 1000);
+}
+function returnMonsterAnimate(z) {
+	setTimeout(function() {
+    $("#monster").attr("src", z);
     	}, 1000);
 }
 function monsterAnimate(z) {
 	setTimeout(function() {
     $("#monster").attr("src", z);
     	}, 200);
-}
-function returnMonsterAnimate(z) {
-	setTimeout(function() {
-    $("#monster").attr("src", z);
-    	}, 1000);
 }
 function enemyBarCheck(z) {
 	if (z.current_hp < 1){
@@ -143,4 +163,14 @@ function getEnemy(player_level) {
 function setBanners(player, enemy) {
 	$("#heroBanner").text(player.name);
 	$("#enemyBanner").text(enemy.name);
+}
+function makeTimeStats(z){
+	z.current_hp = z.max_hp;
+	z.current_attack = z.base_attack;
+}
+function skillReader(){
+	console.log(this.value);
+}
+function animateFireball(){
+	
 }
