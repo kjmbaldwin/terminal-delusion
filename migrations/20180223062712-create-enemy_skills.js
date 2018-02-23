@@ -9,16 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
-        type: DataTypes.STRING
+        type: Sequelize.STRING
       },
       attack_scaling: {
-        type: DataTypes.INTEGER
+        type: Sequelize.INTEGER
       },
       random_damage: {
-        type: DataTypes.INTEGER
+        type: Sequelize.INTEGER
       },
       special_effects: {
-        type: DataTypes.STRING
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

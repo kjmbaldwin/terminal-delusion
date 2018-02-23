@@ -9,27 +9,27 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       username : {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
         allowNull: false
       }, 
       name : {
-        type : DataTypes.STRING,
+        type : Sequelize.STRING,
         allowNull: false
       }, 
       level : {
-        type : DataTypes.INTEGER,
+        type : Sequelize.INTEGER,
         allowNull: false
       }, 
       max_hp : {
-        type : DataTypes.INTEGER,
+        type : Sequelize.INTEGER,
         allowNull: false
       }, 
       base_attack : {
-        type : DataTypes.INTEGER,
+        type : Sequelize.INTEGER,
         allowNull: false
       },
       known_skills : {
-        type : DataTypes.STRING,
+        type : Sequelize.STRING,
         allowNull: false
       },
       createdAt: {
