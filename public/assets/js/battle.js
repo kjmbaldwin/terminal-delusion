@@ -24,8 +24,8 @@ var test = {
 
 $(".skill-button").on('click', function(e) {
 	var skillName = this.value;
-	//start primay function on click.
-	if(player.current_hp && enemy.current_hp >0) {
+	//start primary function on click.
+	if(player.current_hp && enemy.current_hp > 0) {
 	skillClicked(player, enemy);
 		if(skillName === "fireball"){
 			animateSkill("/assets/img/fireball.png");
@@ -49,6 +49,8 @@ function skillClicked(playerObj, enemyObj){
 			monsterAnimate("/assets/img/monster-attack2.png");
 			playerObj.current_hp = playerObj.current_hp - enemyDmg;
 			injuryCheck(playerObj, enemyObj);
+			// sends damage results to the console.
+			displayResults(playerDmg, enemyDmg);
 		enemyBarCheck(enemy);
 		playerBarCheck(player);
 }
@@ -61,13 +63,19 @@ var attack = function(attackerObj, skillObj){
 		
 		return(Math.round(base_damage + randomized_damage));
 };
+
+// Function uses damage variables to send text to the console div.
+function displayResults(playerDmg, enemeyDmg) {
+	$('#console').text('Your fireball did ' + playerDmg + ' points of damage to the enemy.\nThe enemie'+"'"+'s attack did ' + playerDmg + ' points of damage to you.');
+};
+
 function animate(z) {
 	setTimeout(function() {
     $("#wizard").attr("src", z);
     	}, 0);
 }
 function injuryCheck(player, enemy){
-	if (player.current_hp > player.max/2) {
+	if (player.current_hp > player.max_hp/2) {
 		returnAnimate("/assets/img/wizard-healthy2.png");		
 	}
 	else if (player.current_hp < 1) {
@@ -103,7 +111,7 @@ function monsterAnimate(z) {
 }
 function enemyBarCheck(z) {
 	if (z.current_hp < 1){
-		$('#console').text("you win!");
+		$('#console').text("You win!\n Mountains of gold fall from the monster"+"'"+"s torn hides.");
 		}
 			newprogress=0;
 			newprogress = (z.current_hp/z.max_hp)*100;
@@ -112,7 +120,7 @@ function enemyBarCheck(z) {
 }
 function playerBarCheck(z) {
 	if(z.current_hp < 1){
-		$('#console').text('you lose :(');
+		$('#console').text('You lose :( \n Angels play harps...');
 	}
 		newprogress =0;
 		newprogress = (z.current_hp/z.max_hp)*100;
