@@ -42,8 +42,8 @@
 </body>
 
 <script src="https://code.jquery.com/jquery-1.11.1.min.js"></script>
-<script src="../public/assets/js/login.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<!-- <script src="../public/assets/js/login.js"></script> -->
+<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
 <script>
 
   $("#add-user").on("click", function(event){
@@ -65,7 +65,7 @@
       console.log(fromPlayerTable);
       localStorage.player = JSON.stringify(fromPlayerTable);
       var player = JSON.parse(localStorage.player);
-      // window.location.href = "/battle";
+      window.location.href = "/battle";
     });
   });
 </script>

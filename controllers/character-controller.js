@@ -43,12 +43,9 @@ router.post("/api/character/:username", function(req, res) {
               });
         }
         else {
-          return res.redirect('/')
-          // res.json(result);
+          res.json(result);
            console.log(result);
-        }
-      // res.render("index", result);
-      // res.json(result);
+        } 
   });  
 });
 //get the enemy based on name
