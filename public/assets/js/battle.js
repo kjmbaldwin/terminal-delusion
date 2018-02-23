@@ -5,28 +5,7 @@ var enemy;
 getEnemy(player.level);
 
 //add a currenthp stat to localstorage object
-
 var test = {
-	// player: {
-	// 	username: "davidmcdougs",
-	// 	name: "Umber",
-	// 	level: 0,
-	// 	max_hp: 25,
-	// 	current_hp: 25,
-	// 	base_attack: 5,
-	// 	known_skills: "0",
-	// 	current_attack: 5,
-	// },
-	// enemy: {
-	// 	name: 'goblin',
-	// 	level: 0,
-	// 	max_hp: 50,
-	// 	current_hp: 50,
-	// 	base_attack: 3,
-	// 	known_skills: "0",
-	// 	// Added current_attack key
-	// 	current_attack: 3,
-	// },
 	player_skill: {
 		name: 'player_attack',
 		attack_scaling: 50,
@@ -48,6 +27,15 @@ $(".skill-button").on('click', function(e) {
 	//start primay function on click.
 	if(player.current_hp && enemy.current_hp >0) {
 	skillClicked(player, enemy);
+		if(skillName === "fireball"){
+			animateSkill("/assets/img/fireball.png");
+		}
+		if(skillName === "lightning"){
+			animateSkill("/assets/img/lightning.png");
+		}
+		if(skillName === "ice"){
+			animateSkill("/assets/img/ice.png");
+		}
 	}
 });
 
@@ -61,19 +49,6 @@ function skillClicked(playerObj, enemyObj){
 			monsterAnimate("/assets/img/monster-attack2.png");
 			playerObj.current_hp = playerObj.current_hp - enemyDmg;
 			injuryCheck(playerObj, enemyObj);
-		// console.log("I am current player hp "+playerObj.current_hp);
-		
-			
-		// 	else if (enemyObj.current_hp <= 0) {
-		// 		monsterAnimate("/assets/img/monster-injured2.png");
-		// 	}
-		// }
-		// else if (playerObj.current_hp > 0 && playerObj.current_hp < 10) {
-		// 	returnAnimate("/assets/img/wizard-injured2.png"); 
-		// }
-		// else {
-		// 	returnAnimate("/assets/img/wizard-injured2.png");
-		// }
 		enemyBarCheck(enemy);
 		playerBarCheck(player);
 }
@@ -86,11 +61,10 @@ var attack = function(attackerObj, skillObj){
 		
 		return(Math.round(base_damage + randomized_damage));
 };
-
 function animate(z) {
 	setTimeout(function() {
     $("#wizard").attr("src", z);
-    	}, 200);
+    	}, 0);
 }
 function injuryCheck(player, enemy){
 	if (player.current_hp > player.max/2) {
@@ -111,7 +85,6 @@ function injuryCheck(player, enemy){
 	else {
 		returnMonsterAnimate("/assets/img/monster-injured2.png");
 	}
-
 }	
 function returnAnimate(z) {
 	setTimeout(function() {
@@ -171,6 +144,17 @@ function makeTimeStats(z){
 function skillReader(){
 	console.log(this.value);
 }
-function animateFireball(){
-	
+function animateSkill(z){
+	$("#animationBox").attr("src", z);	
+	$('#animationBox').css('visibility', 'visible');
+	$('#animationBox').show()
+	$("#animationBox").animate({left: '800px'}, 'slow', function () { $(this).removeAttr('style'); });
+
+	   setTimeout(function() {
+        $('#animationBox').hide();
+        $("#animationBox").attr("src", "");
+    }, 500);
+
 }
+
+

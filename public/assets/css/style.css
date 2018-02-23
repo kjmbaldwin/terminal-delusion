@@ -59,3 +59,22 @@ h2 {
 		font-size: 20px;
 		margin: 10px;
 }
+
+#good-guys-view {
+	display:inline;
+	float:left;
+}
+/*#animationBox{
+	bottom:50px;
+	left:100px;s
+	z-index:5;
+}*/
+#animationBox{
+position: absolute;
+visibility: hidden;
+width:200px;
+height:65px;
+z-index: 100;
+top:450px;
+left:100px;
+}
