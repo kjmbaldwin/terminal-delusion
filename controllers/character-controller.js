@@ -23,7 +23,7 @@ router.get("/battle", function(req,res){
 //get your character based on the username
 router.post("/api/character/:username", function(req, res) {
     var username = req.params.username;
-    models.Player.findOne({
+    models.player.findOne({
       where: {
         username: req.params.username
       }
@@ -52,7 +52,7 @@ router.post("/api/character/:username", function(req, res) {
 });
 //get the enemy based on name
 router.post("/api/enemy/:name", function(req, res){
-  models.Enemy.findOne({
+  models.enemy.findOne({
     where: {
       name: req.params.name
     }
@@ -65,7 +65,7 @@ router.post("/api/enemy/:name", function(req, res){
 });
 
 router.post("/api/new", function(req, res){
-  models.Player.create({
+  models.player.create({
     username: req.body.username,
     name: req.body.name,
     level: req.body.level,
