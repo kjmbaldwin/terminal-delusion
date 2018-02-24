@@ -22,21 +22,6 @@ router.get("/battle", function(req,res){
 
 //get your character based on the username
 router.post("/api/character/:username", function(req, res) {
-<<<<<<< HEAD
-  models.players.findOne({
-      where: {
-        username: req.params.username
-      }
-    }).then(function(player) { //this is probably wrong, pulled if from burgers homework
-    //handlebars stuff: 
-    // var handleBarsObj = {
-      //     characters: allCharacters
-      // };
-      // res.render("index", handleBarsObj);
-     res.json(player);
-      console.log(player);
-  });
-=======
     var username = req.params.username;
     models.Player.findOne({
       where: {
@@ -63,7 +48,6 @@ router.post("/api/character/:username", function(req, res) {
         } 
         router.something();
   });  
->>>>>>> 48119c5bffcc435420582be4447a4ad53ec78185
 });
 //get the enemy based on name
 router.post("/api/enemy/:name", function(req, res){
