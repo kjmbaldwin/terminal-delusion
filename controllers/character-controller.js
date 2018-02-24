@@ -31,7 +31,7 @@ router.post("/api/character/:username", function(req, res) {
       // include: [models.player_skills]
     }).then(function(result) { //this is probably wrong, pulled if from burgers homework
         if(result === null){
-           models.Player.create({
+           models.player.create({
             username: username,
             name: "John",
             level: 0,
