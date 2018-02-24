@@ -66,7 +66,7 @@ var attack = function(attackerObj, skillObj){
 
 // Function uses damage variables to send text to the console div.
 function displayResults(playerDmg, enemeyDmg) {
-	$('#console').text('Your fireball did ' + playerDmg + ' points of damage to the enemy.\nThe enemie'+"'"+'s attack did ' + playerDmg + ' points of damage to you.');
+	$('#console').text('Your '+skillName+' did ' + playerDmg + ' points of damage to the enemy.\nThe enemie'+"'"+'s attack did ' + enemyDmg + ' points of damage to you.');
 };
 
 function animate(z) {
