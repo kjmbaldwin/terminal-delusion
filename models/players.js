@@ -1,6 +1,6 @@
 'use strict';
 module.exports = function(sequelize, DataTypes) { 
-  var Player = sequelize.define("Player", {
+  var player = sequelize.define("player", {
     username : {
       type: DataTypes.STRING,
       allowNull: false
@@ -27,9 +27,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  Player.associate = function(models) {
-    Player.hasMany(models.player_skills, {});
+  player.associate = function(models) {
+    player.hasMany(models.player_skills, {});
   };
 
-return Player;
+return player;
 };

@@ -1,5 +1,5 @@
 module.exports = function(sequelize, DataTypes) { 
-  var Enemy = sequelize.define("Enemy", {
+  var Enemy = sequelize.define("enemy", {
     name : {
       type : DataTypes.STRING,
       allowNull: false
@@ -22,9 +22,9 @@ module.exports = function(sequelize, DataTypes) {
     }
   });
 
-  Enemy.associate = function(models) {
-    Enemy.hasMany(models.enemy_skills, {});
+  enemy.associate = function(models) {
+    enemy.hasMany(models.enemy_skills, {});
   };
 
-return Enemy;
+return enemy;
 };
