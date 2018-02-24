@@ -20,10 +20,10 @@ var test = {
 	}
 
 };
-
+var skillName = "";
 
 $(".skill-button").on('click', function(e) {
-	var skillName = this.value;
+	 skillName = this.value;
 	//start primary function on click.
 	if(player.current_hp && enemy.current_hp > 0) {
 	skillClicked(player, enemy);
@@ -65,7 +65,7 @@ var attack = function(attackerObj, skillObj){
 };
 
 // Function uses damage variables to send text to the console div.
-function displayResults(playerDmg, enemeyDmg) {
+function displayResults(playerDmg, enemyDmg) {
 	$('#console').text('Your '+skillName+' did ' + playerDmg + ' points of damage to the enemy.\nThe enemie'+"'"+'s attack did ' + enemyDmg + ' points of damage to you.');
 };
 
