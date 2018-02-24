@@ -26,8 +26,9 @@ router.post("/api/character/:username", function(req, res) {
     models.Player.findOne({
       where: {
         username: req.params.username
-      },
-      include: [models.player_skills]
+      }
+      // ,
+      // include: [models.player_skills]
     }).then(function(result) { //this is probably wrong, pulled if from burgers homework
         if(result === null){
            models.Player.create({
@@ -54,13 +55,15 @@ router.post("/api/enemy/:name", function(req, res){
   models.Enemy.findOne({
     where: {
       name: req.params.name
-    },
-    include: [models.enemy_skills]
+    }
+    // ,
+    // include: [models.enemy_skills]
   }).then(function(enemies){
     res.json(enemies);
       console.log(enemies);
   });
 });
+
 router.post("/api/new", function(req, res){
   models.Player.create({
     username: req.body.username,

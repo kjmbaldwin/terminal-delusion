@@ -13,9 +13,9 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  player_skills.associate = function(models) {
-    player_skills.belongsTo(models.Player);
-  };
+  // player_skills.associate = function(models) {
+  //   player_skills.belongsTo(models.Player);
+  // };
 
   return player_skills;
 };
